@@ -11,9 +11,9 @@ def separate_dataset(filename):
     bad_out  = open("bad_"+filename,"w+");
 
     seen = 1;
-    with open(filename,'r') as f:
+    with open(filename,'r',errors='ignore') as f:
         reader = csv.reader(f)
-        reader.next()
+        reader.__next__()
 
         for line in reader:
             seen +=1
@@ -129,7 +129,7 @@ def gen_batch(data, batch_size, num_epochs, shuffle=True):
             yield shuffled_data[start_index:end_index]
 
 if __name__ == "__main__":
-    separate_dataset("small.txt");
+    separate_dataset("ttdata.csv");
 
 
 #42
